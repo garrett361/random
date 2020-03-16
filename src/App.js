@@ -32,6 +32,7 @@ deleteRow = i => {
   })
 }
 
+
   
   // Rendering the current input onto the table and showing the submit button
   render() {
@@ -39,6 +40,7 @@ deleteRow = i => {
   
     return (
       <div className="container">
+        <h1>Random Number Generator</h1>
         <Form handleSubmit={this.handleSubmit}/>
         <RandTable inputData={input} deleteRow={this.deleteRow} />
       </div>
@@ -47,4 +49,4 @@ deleteRow = i => {
 
 }
 
-  export default App
+  export default App;

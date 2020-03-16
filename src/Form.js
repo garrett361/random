@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class RandGenerator extends Component {
+class Form extends Component {
 
   constructor(props) {
     super(props)
@@ -8,37 +8,36 @@ class RandGenerator extends Component {
     this.initialState = {
       min: '',
       max: '',
-      total: '',
+      length: '',
     }
 
     this.state = this.initialState
   }
 
-// Reaction of forms to input.  On change, will take the name-value pair of
+
+  // Reaction of forms to input.  On change, will take the name-value pair of
 // input html objects and set the state of the object based on this
 
 handleChange = event => {
-    const { name, value } = event.target
-  
-    this.setState({
-      [name]: value,
-    })
-  }
+  const { name, value } = event.target
 
-
+  this.setState({
+    [name]: value,
+  })
+}
 
 
   // Submit button action.  On click, use App.js's handleSubmit to append form
   // data to previous data, then reset to initial blank state
 
-  submitRandGenerator = () => {
+  submitForm = () => {
     this.props.handleSubmit(this.state)
     this.setState(this.initialState)
   }
 
 
   render() {
-    const { min, max, total } = this.state;
+    const { min, max, length } = this.state;
   
     return (
       <form>
@@ -66,12 +65,12 @@ handleChange = event => {
 
 
 
-        <label for="total">Total</label>
+        <label for="length">Length</label>
         <input
           type="number"
-          name="total"
-          id="total"
-          value={total}
+          name="length"
+          id="length"
+          value={length}
           onChange={this.handleChange} />
 
           {/* Submit Button */}
@@ -79,7 +78,7 @@ handleChange = event => {
         <input 
           type="button"
           value="Submit"
-          onClick={this.submitRandGenerator} />
+          onClick={this.submitForm} />
       </form>
     );
   }
@@ -87,4 +86,4 @@ handleChange = event => {
 }
 
 
-export default RandGenerator;
+export default Form;

@@ -1,42 +1,46 @@
 import React, {Component} from 'react'
-import Table from './Table'
-import RandGenerator from './RandGenerator'
+import RandTable from './RandTable'
+import Form from './Form'
+
 
 class App extends Component {
 
-// 'characters' is a list which will contain all saved input data.  Initially blank
+// 'input' is a list which will contain all saved input data.  Initially blank
 
   state = {
-    characters: [],
+    input: [],
   }
 
-// Code for a delete button.  Takes the character list and an index i and returns
-// the character list with the i-th entry removed
 
-  removeCharacter = index => {
-    const { characters } = this.state
+  // Code for handling the submit button and appending new data to input list
   
-    this.setState({
-      characters: characters.filter((character, i) => {
-        return i !== index
-      }),
-    })
+  handleSubmit = x => {
+    this.setState({input:[...this.state.input,x]})
   }
 
-// Code for handling the submit button and appending new data to characters list
+// Code for a delete button.  Takes the input list and an index i and returns
+// the input list with the i-th entry removed. It's important that input is the name used here
+// not sure why; thought it's just a variable name?
+
+deleteRow = i => {
+  const { input } = this.state
+
+  this.setState({
+    input: input.filter((z, x) => {
+      return x !== i
+    }),
+  })
+}
+
   
-  handleSubmit = newcharacter => {
-    this.setState({characters:[...this.state.characters,newcharacter]})
-  }
-
-  // Rendering the current characters onto the table and showing the submit button
+  // Rendering the current input onto the table and showing the submit button
   render() {
-    const { characters } = this.state
+    const { input } = this.state
   
     return (
       <div className="container">
-        <Table characterData={characters} removeCharacter={this.removeCharacter} />
-        <RandGenerator handleSubmit={this.handleSubmit}/>
+        <Form handleSubmit={this.handleSubmit}/>
+        <RandTable inputData={input} deleteRow={this.deleteRow} />
       </div>
     )
   }

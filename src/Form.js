@@ -35,11 +35,24 @@ handleChange = event => {
     this.setState(this.initialState)
   }
 
+  // Reset form to initial state
+
+
+  resetForm = () => {
+    this.props.handleReset(this.state)
+    this.setState(this.initialState)
+  }
+
+  // resetForm = () => {
+  //   this.setState
+  // }
 
   render() {
     const { min, max, length } = this.state;
   
     return (
+
+      <div>
       <form>
 
 
@@ -72,14 +85,23 @@ handleChange = event => {
           id="length"
           value={length}
           onChange={this.handleChange} />
-
-          {/* Submit Button */}
-
-        <input 
-          type="button"
-          value="Submit"
-          onClick={this.submitForm} />
+          
       </form>
+
+      <input 
+type="button"
+value="Submit"
+onClick={this.submitForm} />
+
+
+<input 
+type="button"
+value="Reset"
+onClick={this.resetForm} />
+
+</div>
+
+      
     );
   }
 

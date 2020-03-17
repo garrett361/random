@@ -38,7 +38,6 @@ const TableHeader = () => {
 const TableBody = props => {
 
 
-
 // Take min, max, length data and turn it into min, max, random string data
 
  // output integer between xmin and xmax:
@@ -50,16 +49,42 @@ const TableBody = props => {
 
 // Create an array of n random integers between xmin and xmas
 
-      function randlist(n,xmin,xmax) {
-        var i
-        var l = [];
-        for (i=0; i<n;i++) {
-          l.push(randminmax(xmin,xmax))
-        }
-        var lstring 
-        lstring=l.toString();
-        return lstring
-      }
+function randlist(n,xmin,xmax) {
+  var i
+  var l = [];
+  for (i=0; i<n;i++) {
+    l.push(randminmax(xmin,xmax))
+  }
+  var lstring 
+  lstring=l.toString();
+  return lstring
+}
+
+
+// Create an array of n *unique* random integers between xmin and xmas
+
+function randlistunique(n,xmin,xmax) {
+  var i;
+  var l = [];
+  var x;
+  if (n>xmax-xmin+1) {
+    return "Error: Length too long for range"
+  } else {
+
+  for (i=0; i<n;i++) {
+    x = randminmax(xmin,xmax)
+    while (l.includes(x)) {
+      x = randminmax(xmin,xmax)
+    } 
+
+      l.push(x)
+    
+  }
+  var lstring 
+  lstring=l.toString();
+  return lstring
+}
+}
 
    
 
@@ -67,7 +92,11 @@ const TableBody = props => {
 // Take the inputData and create an array which keeps min and max data and additionally
 // has a string of random numbers between these values of desired length
 
-    const randarray=props.inputData.map((x1) => ({min: x1.min,max: x1.max,rand: randlist(x1.length, x1.min,x1.max)}))
+const randarray=props.inputData.map((x1) => ({min: x1.min,max: x1.max,rand: randlist(x1.length, x1.min,x1.max)}))
+
+
+// Same as randarray, but only generates unique elements in the randomized list
+const randarrayunique=props.inputData.map((x1) => ({min: x1.min,max: x1.max,rand: randlistunique(x1.length, x1.min,x1.max)}))
 
 
 // Create rows showing the min, max, and random ouputs
@@ -82,7 +111,7 @@ const TableBody = props => {
         <td>{x1.max}</td>
         <td>{x1.rand}</td>
         <td>
-        <button onClick={() => props.deleteRow(x2)}>Delete</button>
+        <button onClick={() => props.deleteRow(x2)}>Delete</button>  
         </td>
       </tr>
     )

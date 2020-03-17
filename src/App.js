@@ -12,11 +12,17 @@ class App extends Component {
   }
 
 
-  // Code for handling the submit button and appending new data to input list
-  
-  handleSubmit = x => {
-    this.setState({input:[...this.state.input,x]})
-  }
+// Code for handling the submit button and appending new data to input list
+
+handleSubmit = x => {
+  this.setState({input:[...this.state.input,x]})
+}
+
+// Code for handling the reset button
+
+handleReset = x => {
+  this.setState({input:[]})
+}
 
 // Code for a delete button.  Takes the input list and an index i and returns
 // the input list with the i-th entry removed. It's important that input is the name used here
@@ -41,7 +47,7 @@ deleteRow = i => {
     return (
       <div className="container">
         <h1>Random Number Generator</h1>
-        <Form handleSubmit={this.handleSubmit}/>
+        <Form handleSubmit={this.handleSubmit} handleReset={this.handleReset}/>
         <RandTable inputData={input} deleteRow={this.deleteRow} />
       </div>
     )

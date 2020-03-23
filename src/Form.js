@@ -17,11 +17,12 @@ class Form extends Component {
 
 
   // Reaction of forms to input.  On change, will take the name-value pair of
-// input html objects and set the state of the object based on this
+// input html objects and set the state of the object based on this.  The name
+// is fixed for the inputs below, while the value is what the user enters
 
 handleChange = event => {
   const { name, value } = event.target
-
+// The [ ] brackets here are the setState synatx
   this.setState({
     [name]: value,
   })
@@ -29,27 +30,37 @@ handleChange = event => {
 
 
   // Submit button action.  On click, use App.js's handleSubmit to append form
-  // data to previous data, then reset to initial blank state
+  // data to previous data
 
   submitForm = () => {
+    // handleSubmit appends new data using the current state of the form
     this.props.handleSubmit(this.state)
+  }
+
+  // clears the form
+
+  clearForm = () => {
     this.setState(this.initialState)
   }
 
-  // Reset form to initial state
-
+  // Reset form to initial state.  Uses App.js's handleReset
 
   resetForm = () => {
-    this.props.handleReset(this.state)
+    this.props.handleReset()
     this.setState(this.initialState)
   }
 
-  // resetForm = () => {
-  //   this.setState
-  // }
+  // use App.js's handleUniqueToggle code
+
+  toggleUniqueToggle = () => {
+    this.props.handleUniqueToggle()
+  }
+
 
   render() {
+    // Define the variables the output uses in state and in props
     const { min, max, length } = this.state;
+    const {uniquetoggle} = this.props;
   
     return (
 
@@ -66,9 +77,6 @@ handleChange = event => {
           onChange={this.handleChange} 
           autoFocus/>
 
-
-
-
         <label for="max">Max</label>
         <input
           type="number"
@@ -76,8 +84,6 @@ handleChange = event => {
           id="max"
           value={max}
           onChange={this.handleChange} />
-
-
 
         <label for="length">Length</label>
         <input
@@ -97,10 +103,29 @@ onClick={this.submitForm} />
 
 <input 
 type="button"
+value="Clear"
+onClick={this.clearForm} />
+
+
+<input 
+type="button"
 value="Reset"
 onClick={this.resetForm} />
 
+
+
+
+<label class="switch">
+	<input class="switch-input" type="checkbox" onClick={this.toggleUniqueToggle} />
+	<span class="switch-label" data-on="Unique Randoms" data-off="Unique Randoms"></span> 
+	<span class="switch-handle"></span> 
+</label>
+
+
 </div>
+
+
+
 
       
     );

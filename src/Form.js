@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 
 class Form extends Component {
-
+// I think the super(props) is used so that Form can inherit props of Component? Not sure yet.
+// The "props" can also be deleted and it will work, but it seems best practice is to write props.
   constructor(props) {
     super(props)
 

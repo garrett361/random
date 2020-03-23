@@ -4,12 +4,13 @@ import React, { Component } from 'react'
 
 class RandTable extends Component {
     render() {
-      const { inputData, deleteRow } = this.props
+      const { input, deleteRow } = this.props
   
       return (
         <table>
           <TableHeader />
-          <TableBody inputData={inputData} deleteRow={deleteRow} />
+          {/* Why isn't {this.deleteRow} needed here? */}
+          <TableBody input={input} deleteRow={deleteRow} />
         </table>
       )
     }
@@ -89,14 +90,14 @@ function randlistunique(n,xmin,xmax) {
    
 
 
-// Take the inputData and create an array which keeps min and max data and additionally
+// Take the input and create an array which keeps min and max data and additionally
 // has a string of random numbers between these values of desired length
 
-const randarray=props.inputData.map((x1) => ({min: x1.min,max: x1.max,rand: randlist(x1.length, x1.min,x1.max)}))
+const randarray=props.input.map((x1) => ({min: x1.min,max: x1.max,rand: randlist(x1.length, x1.min,x1.max)}))
 
 
 // Same as randarray, but only generates unique elements in the randomized list
-const randarrayunique=props.inputData.map((x1) => ({min: x1.min,max: x1.max,rand: randlistunique(x1.length, x1.min,x1.max)}))
+const randarrayunique=props.input.map((x1) => ({min: x1.min,max: x1.max,rand: randlistunique(x1.length, x1.min,x1.max)}))
 
 
 // Create rows showing the min, max, and random ouputs

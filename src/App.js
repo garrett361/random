@@ -16,7 +16,6 @@ class App extends Component {
 
   state = {
     input: [],
-    output: [],
     uniquetoggle: 0,
   }
 
@@ -85,51 +84,5 @@ deleteRow = i => {
 
 
 
-// Functions for handling random numbers
-
-// output integer between xmin and xmax:
-
-
-const randminmax = (xmin,xmax) => {
-  return Math.round(Math.random()*(Math.abs(Number(xmax)-Number(xmin))))+Number(xmin)
-}
-
-// Create an array of n random integers between xmin and xmax
-
-const randlist = (n,xmin,xmax) => {
-var i
-var l = [];
-for (i=0; i<n;i++) {
-  l.push(randminmax(xmin,xmax))
-}
-var lstring 
-lstring=l.toString();
-return lstring
-}
-
-// Create an array of n *unique* random integers between xmin and xmas
-  
-const randlistunique = (n,xmin,xmax) => {
-  var i;
-  var l = [];
-  var x;
-  if (n>xmax-xmin+1) {
-    return "Error: Length too long for range"
-  } else {
-
-  for (i=0; i<n;i++) {
-    x = randminmax(xmin,xmax)
-    while (l.includes(x)) {
-      x = randminmax(xmin,xmax)
-    } 
-
-      l.push(x)
-    
-  }
-  var lstring 
-  lstring=l.toString();
-  return lstring
-}
-}
 
   export default App;

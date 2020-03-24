@@ -117,7 +117,7 @@ onClick={this.resetForm} />
 
 <label class="switch">
 	<input class="switch-input" type="checkbox" onClick={this.toggleUniqueToggle} />
-	<span class="switch-label" data-on="Unique Randoms" data-off="Unique Randoms"></span> 
+	<span class="switch-label" data-on="No Repeated Numbers" data-off="Allow Repeats"></span> 
 	<span class="switch-handle"></span> 
 </label>
 

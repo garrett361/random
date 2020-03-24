@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 
-
 class RandTable extends Component {
     render() {
       // inherits various things from from App.js as props

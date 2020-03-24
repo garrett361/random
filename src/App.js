@@ -3,16 +3,26 @@ import RandTable from './RandTable'
 import Form from './Form'
 
 
+
+
+
+
+
 class App extends Component {
 
-// 'input' is a list which will contain all saved input data.  Initially blank
+// 'input' is a list which will contain all saved input data. we will turn the input data into output data  Initially blank
 // uniquetoggle is either 0 or 1 (true, false) and controls whether output of random number strings
 // gives unique strings or not
 
   state = {
     input: [],
+    output: [],
     uniquetoggle: 0,
   }
+
+  
+ 
+
 
 
 // Code for handling the submit button and appending new data to input list
@@ -64,13 +74,62 @@ deleteRow = i => {
 // and RandTable classes themselves, instead they need to inherit them?
     return (
       <div className="container">
-        <h1>Random Number Generator</h1>
+        <h1>Random Number String Generator</h1>
         <Form handleSubmit={this.handleSubmit} handleReset={this.handleReset} handleUniqueToggle={this.handleUniqueToggle} uniquetoggle={uniquetoggle} />
         <RandTable input={input} deleteRow={this.deleteRow} uniquetoggle={uniquetoggle} />
       </div>
     )
   }
 
+}
+
+
+
+// Functions for handling random numbers
+
+// output integer between xmin and xmax:
+
+
+const randminmax = (xmin,xmax) => {
+  return Math.round(Math.random()*(Math.abs(Number(xmax)-Number(xmin))))+Number(xmin)
+}
+
+// Create an array of n random integers between xmin and xmax
+
+const randlist = (n,xmin,xmax) => {
+var i
+var l = [];
+for (i=0; i<n;i++) {
+  l.push(randminmax(xmin,xmax))
+}
+var lstring 
+lstring=l.toString();
+return lstring
+}
+
+// Create an array of n *unique* random integers between xmin and xmas
+  
+const randlistunique = (n,xmin,xmax) => {
+  var i;
+  var l = [];
+  var x;
+  if (n>xmax-xmin+1) {
+    return "Error: Length too long for range"
+  } else {
+
+  for (i=0; i<n;i++) {
+    x = randminmax(xmin,xmax)
+    while (l.includes(x)) {
+      x = randminmax(xmin,xmax)
+    } 
+
+      l.push(x)
+    
+  }
+  var lstring 
+  lstring=l.toString();
+  return lstring
+}
 }
 
   export default App;

@@ -61,7 +61,7 @@ const TableBody = props => {
 }
 
 
-// Create an array of n random integers between xmin and xmas
+// Create an array of n random integers between xmin and xmax
 
 function randlist(n,xmin,xmax) {
   var i
@@ -85,7 +85,6 @@ const randarray=props.input.map((x1) => ({min: x1.min,max: x1.max,rand: randlist
 
 
 const rows = randarray.map((x1, x2) => {
-
 
   return (
     <tr key={x2}>
